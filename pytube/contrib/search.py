@@ -189,6 +189,10 @@ class Search:
                 # Seems to be the renderer used for the image shown on a no results page
                 if 'backgroundPromoRenderer' in video_details:
                     continue
+                    
+                # YouTube movies to buy/rent
+                if 'movieRenderer' in video_details:
+                    continue
 
                 # Check if found renderer is unsupported
                 supported_renderers = {'videoRenderer', 'reelShelfRenderer'}
