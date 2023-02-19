@@ -215,20 +215,13 @@ class Search:
                         vid_id = vid_renderer['videoId']
                         vid_url = f'https://www.youtube.com/watch?v={vid_id}'
                         vid_title = vid_renderer['headline']['simpleText']
-                        vid_channel_data = \
-                            vid_renderer['navigationEndpoint']['reelWatchEndpoint']['overlay'][
-                                'reelPlayerOverlayRenderer'][
-                                'reelPlayerHeaderSupportedRenderers']['reelPlayerHeaderRenderer']['channelTitleText'][
-                                'runs'][0]
-                        vid_channel_name = vid_channel_data['text']
-                        vid_channel_uri = vid_channel_data['navigationEndpoint']['browseEndpoint']['canonicalBaseUrl']
 
                         vid_metadata = {
                             'id': vid_id,
                             'url': vid_url,
                             'title': vid_title,
-                            'channel_name': vid_channel_name,
-                            'channel_url': vid_channel_uri
+                            'channel_name': None,
+                            'channel_url': None
                         }
                         self.append_video(vid_renderer, vid_metadata, videos)
                 elif 'videoRenderer' in video_details:
