@@ -204,12 +204,10 @@ class Channel(Playlist):
         # html
         try:
             # Possible tabs: Home, Videos, Shorts, Live, Playlists, Community, Channels, About
-            active_tab = {}
-            for tab in initial_data["contents"]["twoColumnBrowseResultsRenderer"]["tabs"]:
-                tab_url = tab["tabRenderer"]["endpoint"]["commandMetadata"]["webCommandMetadata"]["url"]
-                if tab_url.rsplit('/', maxsplit=1)[-1] == self.html_url.rsplit('/', maxsplit=1)[-1]:
-                    active_tab = tab
-                    break
+            tabs = initial_data["contents"]["twoColumnBrowseResultsRenderer"]["tabs"]
+            tab_url = self.html_url.rsplit('/', maxsplit=1)[-1]
+            active_tab  = next(filter(lambda tab: tab['tabRenderer']['endpoint']['commandMetadata'][
+                'webCommandMetadata']['url'].rsplit('/', maxsplit=1)[-1] == tab_url, tabs))
 
             # This is the json tree structure for videos, shorts and streams
             videos = active_tab["tabRenderer"]["content"]["richGridRenderer"]["contents"]
