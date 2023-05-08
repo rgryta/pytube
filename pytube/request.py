@@ -155,7 +155,7 @@ def stream(
             # Try to execute the request, ignoring socket timeouts
             try:
                 response = _execute_request(
-                    url+f"&range={downloaded}-{stop_pos}",
+                    url + f"&range={downloaded}-{stop_pos}",
                     method="GET",
                     timeout=timeout
                 )
